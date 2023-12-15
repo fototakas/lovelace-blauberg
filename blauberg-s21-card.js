@@ -17,10 +17,10 @@ class BlaubergS21Card extends LitElement {
     return document.createElement("blauberg-s21-card-editor");
   }
 
-  static getStubConfig() {
-    // Return a minimal configuration that will result in a working card configuration
-    return { entity: "" };
-  }
+#  static getStubConfig() {
+#    // Return a minimal configuration that will result in a working card configuration
+#    return { entity: "" };
+#  }
 
   render() {
     if (!this.hass || !this.config) {
@@ -28,9 +28,9 @@ class BlaubergS21Card extends LitElement {
     }
 
     const stateObj = this.hass.states[this.config.entity];
-    if (!stateObj) {
-      return html` <ha-card>Unknown entity: ${this.config.entity}</ha-card> `;
-    }
+  #  if (!stateObj) {
+  #    return html` <ha-card>Unknown entity: ${this.config.entity}</ha-card> `;
+  #  }
 
     return html `
     <ha-card>
