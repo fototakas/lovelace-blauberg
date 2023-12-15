@@ -17,10 +17,10 @@ class BlaubergS21Card extends LitElement {
     return document.createElement("blauberg-s21-card-editor");
   }
 
-#  static getStubConfig() {
-#    // Return a minimal configuration that will result in a working card configuration
-#    return { entity: "" };
-#  }
+  static getStubConfig() {
+    // Return a minimal configuration that will result in a working card configuration
+    return { entity: "" };
+  }
 
   render() {
     if (!this.hass || !this.config) {
