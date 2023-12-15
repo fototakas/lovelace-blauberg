@@ -4,7 +4,7 @@ import {
   css
 } from "https://unpkg.com/lit-element@2.0.1/lit-element.js?module";
 
-class SwegonCasaCard extends LitElement {
+class BlaubergS21Card extends LitElement {
   static get properties() {
     return {
       hass: {},
@@ -14,7 +14,7 @@ class SwegonCasaCard extends LitElement {
 
   static getConfigElement() {
     // Create and return an editor element
-    return document.createElement("swegon-casa-card-editor");
+    return document.createElement("blauberg-s21-card-editor");
   }
 
   static getStubConfig() {
@@ -87,7 +87,7 @@ class SwegonCasaCard extends LitElement {
               <g transform="translate(0,-12)">
                 <foreignObject class="sensor">
                   <div class="label left">
-                    ${this.hass.states['sensor.swegon_external_fresh_air_temperature'].state}°C
+                    ${this.hass.states['sensor.blauberg_ir_curtemp_suairin'].state}°C
                   </div>
                 </foreignObject>
               </g>
@@ -100,14 +100,14 @@ class SwegonCasaCard extends LitElement {
                       <ha-icon class="icon" icon="mdi:speedometer"></ha-icon>
                     </div>
                     <div class="label left">
-                      ${Math.trunc(this.hass.states['sensor.swegon_supply_fan_rpm'].state)} rpm
+                      ${Math.trunc(this.hass.states['sensor.blauberg_ir_surpm'].state)} rpm
                     </div>
                   </foreignObject>
                 </g>
                 <g transform="translate(0,190)">
                   <foreignObject class="sensor">
                       <div class="label left">
-                        ${this.hass.states['sensor.swegon_exhaust_air_temperature'].state}°C
+                        ${this.hass.states['sensor.blauberg_ir_curtemp_exairout'].state}°C
                       </div>
                   </foreignObject>
                 </g>
@@ -119,7 +119,7 @@ class SwegonCasaCard extends LitElement {
                       </svg>
                     </div>
                     <div class="label left">
-                      ${Math.trunc(this.hass.states['sensor.swegon_extract_fan_rpm'].state)} rpm
+                      ${Math.trunc(this.hass.states['sensor.blauberg_ir_exrpm'].state)} rpm
                     </div>
                   </foreignObject>
                 </g>
@@ -128,42 +128,42 @@ class SwegonCasaCard extends LitElement {
               <g transform="translate(0,-12)">
                 <foreignObject class="sensor">
                   <div class="label right">
-                    ${this.hass.states['sensor.swegon_extract_air_temp'].state}°C
+                    ${this.hass.states['sensor.blauberg_ir_curtemp_exairin'].state}°C
                   </div>
                 </foreignObject> 
               </g>
-              <g transform="translate(0,90)">
-                <foreignObject class="sensor">
-                  <div class="label right">
-                    ${Math.trunc(this.hass.states['sensor.swegon_exhaust_fan_control'].state)}%
-                  </div>
-                  <div class="icon right">
-                    <!--<svg>
-                      <use class="spin_extract" xlink:href='#fan' />
-                    </svg>-->
-                    <ha-svg-icon class="spin icon" icon="mdi:fan"></ha-svg-icon>
-                  </div>
-                </foreignObject>
-              </g>
+#              <g transform="translate(0,90)">
+#                <foreignObject class="sensor">
+#                  <div class="label right">
+#                    ${Math.trunc(this.hass.states['sensor.swegon_exhaust_fan_control'].state)}%
+#                  </div>
+#                  <div class="icon right">
+#                    <!--<svg>
+#                      <use class="spin_extract" xlink:href='#fan' />
+#                    </svg>-->
+#                    <ha-svg-icon class="spin icon" icon="mdi:fan"></ha-svg-icon>
+#                  </div>
+#                </foreignObject>
+#              </g>
               <g transform="translate(0,190)">
                 <foreignObject class="sensor">
                   <div class="label right">
-                    ${this.hass.states['sensor.swegon_supply_air_temp'].state}°C
+                    ${this.hass.states['sensor.blauberg_ir_curtemp_suairout'].state}°C
                   </div>
                 </foreignObject>
               </g>
-              <g transform="translate(0,293)">
-                <foreignObject class="sensor">
-                  <div class="label right">
-                    ${Math.trunc(this.hass.states['sensor.swegon_supply_fan_control'].state)}%
-                  </div>
-                  <div class="icon right">
-                    <svg>
-                      <use class="spin_supply" xlink:href='#fan' />
-                    </svg>
-                  </div>
-                </foreignObject>
-              </g>
+ #             <g transform="translate(0,293)">
+ #               <foreignObject class="sensor">
+ #                 <div class="label right">
+ #                   ${Math.trunc(this.hass.states['sensor.swegon_supply_fan_control'].state)}%
+ #                 </div>
+ #                 <div class="icon right">
+ #                   <svg>
+ #                     <use class="spin_supply" xlink:href='#fan' />
+ #                   </svg>
+ #                 </div>
+ #               </foreignObject>
+ #             </g>
             </g>
           </g>
         </svg>
@@ -186,7 +186,7 @@ class SwegonCasaCard extends LitElement {
   //  }
 
   getAirFilterTmpl() {
-    if (this.hass.states['binary_sensor.swegon_filter_guard_info'].state != 'on') {
+    if (this.hass.states['sensor.blauberg_ir_statefilter'].state != 'on') {
       return html `<ha-svg-icon class="inactive" icon="mdi:air-filter"></ha-svg-icon>`;
     } else {
       return html `<ha-svg-icon class="warning" icon="mdi:air-filter"></ha-svg-icon>`;
@@ -202,7 +202,7 @@ class SwegonCasaCard extends LitElement {
   //  }
 
   getPreHeatTmpl() {
-    if (this.hass.states['binary_sensor.swegon_preheater_active'].state == 'on') {
+    if (this.hass.states['sensor.blauberg_di_statusheater'].state == 'on') {
       return html `<ha-icon icon="mdi:radiator"></ha-icon>`;
     } else {
       return html `<ha-icon icon="mdi:radiator-off"></ha-icon>`;
@@ -361,18 +361,18 @@ class SwegonCasaCard extends LitElement {
   }
 }
 
-customElements.define("swegon-casa-card", SwegonCasaCard);
+customElements.define("blauberg-s21-card", BlaubergS21Card);
 
 // Next we add our card to the list of custom cards for the card picker
 window.customCards = window.customCards || []; // Create the list if it doesn't exist. Careful not to overwrite it
 window.customCards.push({
-  type: "swegon-casa-card",
-  name: "Swegon Casa Card",
-  description: "Custom card for Swegon Casa energy reclaiming home ventilation aggregates.",
+  type: "blauberg-s21-card",
+  name: "Blauberg S21 Card",
+  description: "Custom card for Blauberg S21 energy recovery units",
 });
 
 // Finally we create and register the editor itself
-class SwegonCasaCardEditor extends LitElement {
+class BlaubergS21CardEditor extends LitElement {
 
   static get properties() {
     return {
@@ -422,4 +422,4 @@ class SwegonCasaCardEditor extends LitElement {
   }
 }
 
-customElements.define("swegon-casa-card-editor", SwegonCasaCardEditor);
+customElements.define("blauberg-s21-card-editor", BlaubergS21CardEditor);
